@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+       .nav{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        margin: 10px;
+        width: 97%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+ 
+       }
+       a{
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+       }
+
+
+
+       .profile{
+        border: solid 1px #ddd;
+        width: 97%;
+        height: 200px;
+        border-radius: 4px;
+        text-align: center;
+        font-weight: 700;
+        font-size: large;
+       }
+       button{
+        border: none;
+        border-radius: 4px;
+        background-color: aqua;
+        width: 150px;
+        height: 50px;
+        margin: 5px;
+       }
+    </style>
+</head>
+
+
+
+
+
+<body>
+
+    <div class="container">
+        <div class="nav">
+            <p></p>
+            <a href="./index.html">Logout</a>
+        </div>
+
+        <div class="profile">
+            <p></p>
+            <button class="btn1" >Player</button>
+            <button class="btn2">weather</button>
+
+        </div>
+    </div>
+
+
+    <script>
+
+        let para1 = document.getElementsByTagName("p")[0];
+        let para2 = document.getElementsByTagName("p")[1];
+        let btn1 = document.getElementsByClassName("btn1")[0];
+        let btn2 = document.getElementsByClassName("btn2")[0];
+
+        let name = localStorage.getItem("name");
+        para1.innerHTML = "Name: " + name;
+        para2.innerHTML = "Hi " + name + " For Your Profile";
+
+        btn1.onclick = function () {
+            window.location.href = "./player.html";
+        }
+
+        btn2.onclick = function () {
+            window.location.href = "./weather.html";
+        }
+    </script>
+    
+</body>
+</html>

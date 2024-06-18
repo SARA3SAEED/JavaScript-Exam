@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEATHER</title>
+    <style>
+           .nav{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        margin: 10px;
+        width: 97%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+ 
+       }
+       a{
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+       }
+       button{
+        border: none;
+        border-radius: 4px;
+        background-color: aqua;
+        width: 150px;
+        height: 50px;
+        margin: 5px;
+       }
+       input{
+        width: 60%;
+        height: 47px;
+
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="nav">
+            <p></p>
+            <a href="./index.html">Logout</a>
+        </div>
+        <div class="search">
+            <input type="text" name="search" id="search" placeholder="Search">
+            <button onclick="search()">search</button>
+        </div>
+
+        <div class="result">
+           
+        </div>
+
+    </div>
+
+    <script>
+     async function search() {
+         let search1 = document.getElementById("search").value;
+         let result = document.getElementsByClassName("result")[0];
+         let key = 'f70f3d8de6f3656dd7fca02c85996725';
+         let url = 'https://api.openweathermap.org/data/2.5/weather?q=';
+         let request = await fetch(`${url}${search1}&appid=${key}`);
+         let data = await request.json();
+         console.log(data);
+
+         if (data.cod === 200) {
+             result.innerHTML = `
+              <p>City:${data.name}</p>
+              <p>Temperature:${(data.main.temp - 273.15).toFixed(2)}°C</p>
+             `;
+         } else {
+             result.innerHTML = `<p>Error: ${data.message}</p>`;
+         }
+     }
+    </script>
+</body>
+</html>

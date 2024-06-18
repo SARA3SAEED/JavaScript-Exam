@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAYER</title>
+    <style>
+           .nav{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        margin: 10px;
+        width: 97%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+ 
+       }
+       a{
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+       }
+       button{
+        border: none;
+        border-radius: 4px;
+        background-color: aqua;
+        width: 150px;
+        height: 50px;
+        margin: 5px;
+       }
+       input{
+        width: 60%;
+        height: 47px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav">
+            <p></p>
+            <a href="./index.html">Logout</a>
+        </div>
+        <div class="search">
+            <input type="text" name="search" id="city" placeholder="city">
+            <input type="text" name="search" id="country" placeholder="country">
+            <div>
+                <button onclick="Hjri()">Hjri</button>
+                <button onclick="Meladi()">Meladi</button>
+            </div>
+        </div>
+        <div class="result"> </div>
+    </div>
+
+    <Script>
+              
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('en-CA');
+            let url = "https://api.aladhan.com/v1/timingsByCity/"
+           
+
+        async function Hjri(){
+            let city = document.getElementById("city").value;
+            let country = document.getElementById("country").value;
+            let request = await fetch(`${url}${formattedDate}?city=${city}&country=${country}&method=8`);
+            let data = await request.json();
+
+            console.log(data);
+            let result = document.querySelector(".result");
+            result.innerHTML = `
+            <p>${data.data.date.hijri.date}</p>
+            <h1>Imsak:${data.data.timings.Imsak}</h1>
+            <h1>Fajr:${data.data.timings.Fajr}</h1>
+            <h1>Sunrise:${data.data.timings.Sunrise}</h1>
+            <h1>Dhuhr:${data.data.timings.Dhuhr}</h1>
+            <h1>Asr:${data.data.timings.Asr}</h1>`;
+        }
+
+        async function Meladi(){
+            let city = document.getElementById("city").value;
+            let country = document.getElementById("country").value;
+            let request = await fetch(`${url}${formattedDate}?city=${city}&country=${country}&method=8`);
+            let data = await request.json();
+
+            console.log(data);
+            let result = document.querySelector(".result");
+            result.innerHTML = `
+            <p>${formattedDate}</p>
+            <h1>Imsak:${data.data.timings.Imsak}</h1>
+            <h1>Fajr:${data.data.timings.Fajr}</h1>
+            <h1>Sunrise:${data.data.timings.Sunrise}</h1>
+            <h1>Dhuhr:${data.data.timings.Dhuhr}</h1>
+            <h1>Asr:${data.data.timings.Asr}</h1>`;
+        }
+
+    </Script>
+    
+</body>
+</html>

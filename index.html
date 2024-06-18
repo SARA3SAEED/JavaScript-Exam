@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            margin: 200px ;
+            border: solid 1px #ddd;
+            height: 170px;
+            padding: 50px;
+            border-radius: 4px;
+            align-items: center;
+        }
+
+        .div-1,.div-2{
+            display: flex;
+            justify-content: center;
+            padding: 5px;
+            margin: 5px;
+           
+        }
+        label,input,button{
+            padding: 5px;
+            margin: 5px;
+        }
+        label{
+         width: 50px;
+         margin: 9px;
+        }
+        input{
+        width: 60%;
+        }
+        button{
+            width: 190px;
+            height: 40px;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+<body>
+
+
+
+    
+    <div class="container">
+        <div>
+            <div class="div-1">
+                <label for="name1">Name:</label>
+                <input type="text" id="name1" placeholder="Name" required>
+            </div>
+            <div class="div-2">
+                <label for="password1">Password:</label>
+                <input type="password" id="password1" placeholder="password" required>
+            </div>
+        </div>
+       
+        <div class="div-3">
+            <button class="btn" onclick="login()">Submit</button>
+            <div>
+                <small class="smal" >Do You Want To Sing Up ? <a href="./register.html"> Sing Up</a></small>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script >
+
+        async  function login(){
+            let url = 'https://665736849f970b3b36c864e7.mockapi.io/login1/1/logIn';
+            let name1 = document.getElementById("name1").value;
+            let password1 = document.getElementById("password1").value;
+
+            let request = await fetch(url);
+            let response = await request.json();
+            const user = response.find(u => u.name === name1 && u.password === password1);
+
+
+            if(user){
+                localStorage.setItem("name",user.name);
+                window.location.href = "./profile.html";
+            }
+            else{
+                alert("Invalid Credentials");
+            }
+
+        }
+
+
+    </script>
+</body>
+</html>

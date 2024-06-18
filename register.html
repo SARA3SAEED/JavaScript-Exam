@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            margin: 200px ;
+            border: solid 1px #ddd;
+            height: 220px;
+            padding: 50px;
+            border-radius: 4px;
+            align-items: center;
+        }
+
+        .div-1,.div-2,.div-3{
+            display: flex;
+            justify-content: center;
+            padding: 5px;
+            margin: 5px;
+           
+        }
+        label,input,button{
+            padding: 5px;
+            margin: 5px;
+        }
+        label{
+         width: 50px;
+         margin: 9px;
+        }
+        input{
+        width: 60%;
+        }
+        button{
+            width: 190px;
+            height: 40px;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+
+
+
+<body>
+    
+    <div class="container">
+        <div>
+            <div class="div-1">
+                <label for="name1">Name:</label>
+                <input type="text" id="name1" placeholder="Name" required>
+            </div>
+            <div class="div-2">
+                <label for="email1">Eamil:</label>
+                <input type="email" id="email1" placeholder="Eamil" required>
+            </div>
+            <div class="div-3">
+                <label for="password1">Password:</label>
+                <input type="password" id="password1" placeholder="password" required>
+            </div>
+        </div>
+       
+        <div class="div-4">
+            <button class="btn" onclick="register()">Submit</button>
+        </div>
+    </div>
+
+
+
+
+    
+
+    <script>
+
+        let btn = document.getElementById('btn');
+        let name1 = document.getElementById('name1');
+        let email1 = document.getElementById('email1');
+        let password1 = document.getElementById('password1');
+
+
+
+        async function register(){
+            let url = 'https://665736849f970b3b36c864e7.mockapi.io/login1/1/logIn';
+            let request = await fetch(url , {
+                method: 'POST',
+                body: JSON.stringify({
+                    name: name1.value,
+                    email: email1.value,
+                    password:  password1.value
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('Success');
+            let data = await request.json();
+            console.log(data);
+            window.open('./index.html');
+        }
+    </script>
+    
+</body>
+</html>
