@@ -63,7 +63,7 @@
         async function Hjri(){
             let city = document.getElementById("city").value;
             let country = document.getElementById("country").value;
-            let request = await fetch(`${url}${formattedDate}?city=${city}&country=${country}&method=8`);
+            let request = await fetch(`${url}${now}?city=${city}&country=${country}&method=8`);
             let data = await request.json();
 
             console.log(data);
@@ -80,7 +80,7 @@
         async function Meladi(){
             let city = document.getElementById("city").value;
             let country = document.getElementById("country").value;
-            let request = await fetch(`${url}${formattedDate}?city=${city}&country=${country}&method=8`);
+            let request = await fetch(`${url}${now}?city=${city}&country=${country}&method=8`);
             let data = await request.json();
 
             console.log(data);
